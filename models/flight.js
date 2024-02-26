@@ -27,10 +27,12 @@ const flightSchema = new Schema({
     flightNo: {
         type: Number,
         min: 10,
-        max: 9999
+        max: 9999,
+        required: true
     },
     departs: {
         type: Date,
+        required: true,
         // DEFAULT IS NOT WORKING
         default: function() {
             var currentDate = new Date();
@@ -38,7 +40,11 @@ const flightSchema = new Schema({
             return currentDate;
         }
     },
-    destinations:[destinationSchema]
+    destinations:[destinationSchema],
+    tickets: [{ 
+        type: Schema.Types.ObjectId,
+        ref: 'Ticket'
+    }],
 }, {
     timestamps: true
 });
