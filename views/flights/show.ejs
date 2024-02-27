@@ -58,7 +58,7 @@
 </form>
 
 <br><br><h2>Tickets</h2>
-<% if (flight.tickets.length) { %>
+<% if (tickets.length) { %>
     <table>
         <thead>
           <tr>
@@ -67,7 +67,7 @@
           </tr>
         </thead>
         <tbody>
-          <% flight.tickets.forEach(function(t) { %>
+          <% tickets.forEach(function(t) { %>
             <tr>
               <td><%= t.seat %></td>
               <td><%= t.price %></td>

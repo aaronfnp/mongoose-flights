@@ -1,4 +1,4 @@
-const Flight = require('../models/flight');
+const Ticket = require('../models/ticket');
 
 module.exports = {
     create,
@@ -6,12 +6,13 @@ module.exports = {
 }
 
 async function create(req, res) {
-    await Ticket.create(req.body);
-    res.redirect(`/flights/${flight._id}`);
-    // res.redirect(`/flights/${req.body.flight}`)
+    const newTicket = await Ticket.create(req.body);
+    newTicket.flight = req.params.id;
+    await newTicket.save();
+    res.redirect(`/flights/${req.params.id}`);
 }
 
 async function show(req, res) {
-    const flight = req.params.id;
-    res.render('tickets/new', {flight, errorMsg: ''});
+    const flightId = req.params.id;
+    res.render('tickets/new', {flightId, errorMsg: ''});
 }
